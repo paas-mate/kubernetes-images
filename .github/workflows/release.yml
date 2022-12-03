@@ -22,23 +22,23 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Save kube-apiserver
-        run: docker pull registry.k8s.io/kube-apiserver:v1.25.0; docker save registry.k8s.io/kube-apiserver:v1.25.0 -o kube-apiserver.tar.gz
+        run: docker pull registry.k8s.io/kube-apiserver:v1.25.4; docker save registry.k8s.io/kube-apiserver:v1.25.4 -o kube-apiserver.tar.gz
       - name: Save kube-controller-manager
-        run: docker pull registry.k8s.io/kube-controller-manager:v1.25.0; docker save registry.k8s.io/kube-controller-manager:v1.25.0 -o kube-controller-manager.tar.gz
+        run: docker pull registry.k8s.io/kube-controller-manager:v1.25.4; docker save registry.k8s.io/kube-controller-manager:v1.25.4 -o kube-controller-manager.tar.gz
       - name: Save kube-scheduler
-        run: docker pull registry.k8s.io/kube-scheduler:v1.25.0; docker save registry.k8s.io/kube-scheduler:v1.25.0 -o kube-scheduler.tar.gz
+        run: docker pull registry.k8s.io/kube-scheduler:v1.25.4; docker save registry.k8s.io/kube-scheduler:v1.25.4 -o kube-scheduler.tar.gz
       - name: Save kube-proxy
-        run: docker pull registry.k8s.io/kube-proxy:v1.25.0; docker save registry.k8s.io/kube-proxy:v1.25.0 -o kube-proxy.tar.gz
+        run: docker pull registry.k8s.io/kube-proxy:v1.25.4; docker save registry.k8s.io/kube-proxy:v1.25.4 -o kube-proxy.tar.gz
       - name: Save pause
         run: docker pull registry.k8s.io/pause:3.8; docker save registry.k8s.io/pause:3.8 -o pause.tar.gz
       - name: Save etcd
-        run: docker pull registry.k8s.io/etcd:3.5.4-0; docker save registry.k8s.io/etcd:3.5.4-0 -o etcd.tar.gz
+        run: docker pull registry.k8s.io/etcd:3.5.5-0; docker save registry.k8s.io/etcd:3.5.5-0 -o etcd.tar.gz
       - name: Save coredns
         run: docker pull registry.k8s.io/coredns/coredns:v1.9.3; docker save registry.k8s.io/coredns/coredns:v1.9.3 -o coredns.tar.gz
       - uses: dev-drprasad/delete-tag-and-release@v0.2.0
         with:
           delete_release: true
-          tag_name: v1.25.0
+          tag_name: v1.25.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -46,7 +46,7 @@ jobs:
         uses: tvdias/github-tagger@v0.0.2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          tag: v1.25.0
+          tag: v1.25.4
 
       # Creates the new release with the binary as a release asset.
       # If the previous Action was skipped, then this keeps the same tag as the
@@ -54,9 +54,9 @@ jobs:
       - name: Create new release
         uses: softprops/action-gh-release@v1
         with:
-          body: "v1.25.0"
-          name: "v1.25.0"
-          tag_name: v1.25.0
+          body: "v1.25.4"
+          name: "v1.25.4"
+          tag_name: v1.25.4
           files: |
             kube-apiserver.tar.gz
             kube-controller-manager.tar.gz
