@@ -35,7 +35,7 @@ jobs:
         run: docker pull registry.k8s.io/etcd:3.5.5-0; docker save registry.k8s.io/etcd:3.5.5-0 -o etcd.tar.gz
       - name: Save coredns
         run: docker pull registry.k8s.io/coredns/coredns:v1.9.3; docker save registry.k8s.io/coredns/coredns:v1.9.3 -o coredns.tar.gz
-      - uses: dev-drprasad/delete-tag-and-release@v0.2.0
+      - uses: dev-drprasad/delete-tag-and-release@v0.2.1
         with:
           delete_release: true
           tag_name: v1.25.4
